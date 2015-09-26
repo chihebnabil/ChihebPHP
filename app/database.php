@@ -10,17 +10,18 @@ $capsule = new Capsule;
 
   $capsule->addConnection([
       'driver'    => 'mysql',
-      'host'      => 'localhost',
+      'host'      => '127.0.0.1',
       'database'  => 'social',
       'username'  => 'root',
       'password'  => 'root',
       'charset'   => 'utf8',
       'collation' => 'utf8_unicode_ci',
-      'prefix'    => '',
+      'prefix'    => ''
   ]);
+$capsule->setAsGlobal();
   // Setup the Eloquent ORM
-  $capsule->bootEloquent();
+$capsule->bootEloquent();
 
 
-  
+
  ?>
