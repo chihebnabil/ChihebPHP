@@ -1,6 +1,6 @@
 {
   "name" : "cnweb/chihebphp",
-  "minimum-stability": "dev",
+  "minimum-stability": "dev" ,
    "authors": [
         {
             "name": "Chiheb Nabil",
