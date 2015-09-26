@@ -1,6 +1,6 @@
 {
   "name" : "cnweb/chihebphp",
-  "minimum-stability": "dev" ,
+  "minimum-stability": "stable",
    "authors": [
         {
             "name": "Chiheb Nabil",
@@ -11,6 +11,7 @@
     ],
 
     "require": {
+       "php": ">=5.4.0",
         "illuminate/database": "^5.1"
     },
     "autoload":{
