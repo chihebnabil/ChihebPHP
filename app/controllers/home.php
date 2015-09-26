@@ -8,11 +8,11 @@ class Home extends Controller
 
 
 
-  function index()
+  function index($name = '')
   {
 
 
-    $this->view('home/index');
+    $this->view('home/index',['name'=>$name]);
 
 
   }

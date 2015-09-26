@@ -12,9 +12,17 @@ class Controller
     return new $model();
   }
 
-  public function view($view,$data = [])
+  public function view($view,$data = [],$template="default")
   {
-    require_once "../app/views/".$view.".php";
+
+
+
+    $content =  file_get_contents("../app/views/".$view.".php");
+
+    require_once "../app/views/layouts/".$template.".php";
+
+
+
   }
 
 
