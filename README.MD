@@ -10,6 +10,14 @@ this php MVC Framework uses as a dependency  the package :  illuminate/database 
 
 ##INSTALATION
 
+####DOWNLOAD
+
+Download the github repo  Unzip it then make a composer install to install dependencies
+
+####DATABASE
+
+To setup your database go to  /app/database.php and change the (username,password,atabase)
+
 
 
 
