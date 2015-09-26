@@ -1,4 +1,6 @@
-{   "authors": [
+{
+  "name" : "cnweb/ChihebPhp",
+   "authors": [
         {
             "name": "Chiheb Nabil",
             "email": "contact@cnweb.dz",
