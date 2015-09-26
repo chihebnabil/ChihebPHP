@@ -1,4 +1,12 @@
-{
+{   "authors": [
+        {
+            "name": "Chiheb Nabil",
+            "email": "contact@cnweb.dz",
+            "homepage": "http://cnweb.dz",
+            "role": "Developer"
+        }
+    ],
+
     "require": {
         "illuminate/database": "^5.1"
     },
