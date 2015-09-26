@@ -1,6 +1,6 @@
 #PHP MVC FRAMEWORK
 
-this php MVC Framework uses as a dependency  the package :  illuminate/database tomanage database
+this php MVC Framework uses as a dependency  the package :  illuminate/database to manage database
 
 ##INSTALATION
 
