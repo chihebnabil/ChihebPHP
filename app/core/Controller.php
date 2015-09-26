@@ -15,9 +15,11 @@ class Controller
   public function view($view,$data = [],$template="default")
   {
 
+    ob_start();
+    include "../app/views/".$view.".php";
+    $content = ob_get_contents();
+    ob_end_clean();
 
-
-    $content =  file_get_contents("../app/views/".$view.".php");
 
     require_once "../app/views/layouts/".$template.".php";
 
