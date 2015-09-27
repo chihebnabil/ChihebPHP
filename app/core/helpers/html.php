@@ -5,13 +5,12 @@ class Html
 {
 
 
-  public function css($link)
+  public function Css($link)
   {
-    # code...
-    echo "<link rel='stylesheet' href='$link'>";
+
   }
 
-  public function script()
+  public function Script()
   {
     # code...
   }
