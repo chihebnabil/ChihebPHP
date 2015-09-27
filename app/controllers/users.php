@@ -1,6 +1,8 @@
 <?php /**
  *
  */
+use Nette\Mail\Message;
+
 
 
 
@@ -21,7 +23,7 @@ class Users extends Controller
    }
    public function login()
    {
-     # code...
+     
       $Auth = new Auth();
 
     //$Auth->login('rppt','tooy');

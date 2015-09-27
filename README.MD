@@ -20,7 +20,17 @@ To setup your database go to  /app/database.php and change the (username,passwor
 
 
 
+####MAIL
+Example of creating an e-mail using Nette\Mail\Message class:
 
+use Nette\Mail\Message;
+
+$mail = new Message;
+$mail->setFrom('John <john@example.com>')
+    ->addTo('peter@example.com')
+    ->addTo('jack@example.com')
+    ->setSubject('Order Confirmation')
+    ->setBody("Hello, Your order has been accepted.");
 
 
 ##DOCUMENTATION
