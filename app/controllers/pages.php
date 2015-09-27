@@ -18,7 +18,7 @@ class Pages extends Controller
   function contact()
   {
 
-     $this->view('pages/contact',[ 'name'=> "ss" ]);
+     $this->view('pages/contact');
 
   }
 
