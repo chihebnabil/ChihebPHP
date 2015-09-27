@@ -1,4 +1,6 @@
 language: php
+env:
+- DB=mysql
 php:
   - 5.4
   - 5.5
