@@ -9,6 +9,7 @@ define('DATABASE','social');
 define('DB_USERNAME','root');
 define('DB_PASSWORD','root');
 
+
  //Config
 
   $capsule->addConnection([

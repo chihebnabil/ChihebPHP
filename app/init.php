@@ -1,13 +1,13 @@
 <?php
-define('WEBRROOT',dirname(__DIR__));
+define('ROOT',dirname(__DIR__));
 
 
-require_once WEBRROOT.'/vendor/autoload.php';
-require_once WEBRROOT.'/app/core/App.php';
-require_once WEBRROOT.'/app/database.php';
-require_once WEBRROOT.'/app/core/components/Auth.php';
-require_once WEBRROOT.'/app/core/helpers/html.php';
-require_once WEBRROOT."/app/core/Controller.php";
+require_once ROOT.'/vendor/autoload.php';
+require_once ROOT.'/app/core/App.php';
+require_once ROOT.'/app/database.php';
+require_once ROOT.'/app/core/components/Auth.php';
+require_once ROOT.'/app/core/helpers/html.php';
+require_once ROOT."/app/core/Controller.php";
 
 
 
