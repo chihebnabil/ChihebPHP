@@ -13,6 +13,7 @@ require_once APP.'/core/App.php';
 require_once APP.'/database.php';
 require_once APP.'/core/components/Auth.php';
 require_once APP.'/core/helpers/html.php';
+require_once APP.'/core/helpers/http.php';
 require_once APP."/core/Controller.php";
 
 

@@ -14,7 +14,7 @@ define('DB_PASSWORD','root');
 
   $capsule->addConnection([
       'driver'    => 'mysql',
-      'host'      => DATABASE,
+      'host'      => HOSTNAME,
       'database'  => DATABASE,
       'username'  => DB_USERNAME,
       'password'  => DB_PASSWORD,

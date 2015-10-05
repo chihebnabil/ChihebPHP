@@ -12,7 +12,7 @@
 
      //table fields
      var $user_table = 'users';          //Users table name
-     var $user_column = 'username';     //USERNAME column (value MUST be valid email)
+     var $user_column = 'email';     //USERNAME column (value MUST be valid email)
      var $pass_column = 'password';      //PASSWORD column
      var $user_level = 'userlevel';      //(optional) userlevel column
 
@@ -235,7 +235,19 @@
          $result = mysql_query($qry) or die(mysql_error());
          return;
      }
+
+     function hash($pwd)
+    {
+      # code...
+      $pwd = md5($pwd);
+
+
+      return $pwd;
+
+    }
+
  }
+
 
 
 
