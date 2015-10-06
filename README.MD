@@ -1,6 +1,6 @@
 #PHP MVC FRAMEWORK
 
-this php MVC Framework uses as a dependency  the package :  illuminate/database to manage database
+This php MVC Framework uses as a dependency  the package :  illuminate/database to manage database
 
 
 "require": {
@@ -19,6 +19,18 @@ Download the github repo  Unzip it then make a composer install to install depen
 To setup your database go to  /app/database.php and change the (username,password,atabase)
 
 
+####HTML HELPERS
+Example of script & css tags
+
+```php
+
+
+    echo Html::script($src);
+
+    echo Html::css($link);
+
+
+```
 
 ####MAIL
 Example of creating an e-mail using Nette\Mail\Message class:
@@ -34,6 +46,8 @@ Example of creating an e-mail using Nette\Mail\Message class:
     ->setSubject('Order Confirmation')
     ->setBody("Hello, Your order has been accepted.");
 ```
+
+
 
 
 ####UPLOAD
