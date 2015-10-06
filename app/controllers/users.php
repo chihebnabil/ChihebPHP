@@ -19,6 +19,56 @@ class Users extends Controller
 
 
    }
+
+   public function api_upload()
+   {
+     # code...
+     $http = new Http();
+     $http->cors();
+
+
+
+     if (!empty($_FILES['file'])) {
+
+       $handle = new upload($_FILES['file']);
+       if ($handle->uploaded) {
+         $file_name = md5(rand(1000, 9999999)) ;
+        $ext =   explode(".", strtolower($_FILES['file']['name']));
+         $handle->file_new_name_body   = $file_name ;
+
+
+         $handle->image_ratio_y        = true;
+         $handle->process(APP.'files');
+         if ($handle->processed) {
+           $capsule = new Capsule;
+           $capsule::table('spicies')->insert([[
+
+             'title' => $_POST['title'] ,
+             'category_id' => $_POST['category_id']  ,
+             'photo' =>  $file_name.".".$ext[1],
+             'user_id' =>  1,
+
+
+
+
+           ]  , ]);
+
+           var_dump($ext[1]);
+
+
+
+           $handle->clean();
+         } else {
+           echo 'error : ' . $handle->error;
+         }
+       }
+
+}
+
+
+
+
+   }
    public function api_register()
    {
      $http = new Http();
@@ -48,6 +98,7 @@ class Users extends Controller
    public function api_login()
    {
    $http = new Http();
+   $capsule = new Capsule;
    $http->cors();
 
    $Auth = new Auth();
@@ -60,9 +111,12 @@ class Users extends Controller
                $email = $request->email;
                $pass = $request->password;
 
-   $logged =   $Auth->login($username,$pass);
+   $logged =   $Auth->login($email,$pass);
+//   $user = $capsule::table('users')->where('email ','=',$email)->get();
+
    $arr = array(
      'logged' => $logged,
+  //   'id' => $user->id,
      'email' => $email,
      'password' => $pass
    );
