@@ -34,4 +34,32 @@ To setup your database go to  /app/database.php and change the (username,passwor
     ->setBody("Hello, Your order has been accepted.");
 
 
+
+####UPLOAD
+    > Example of UPLOADING  a file
+
+    if (!empty($_FILES['file'])) {
+
+      $handle = new upload($_FILES['file']);
+      if ($handle->uploaded) {
+        $file_name = md5(rand(1000, 9999999)) ;
+       $ext =   explode(".", strtolower($_FILES['file']['name']));
+        $handle->file_new_name_body   = $file_name ;
+
+
+        $handle->image_ratio_y        = true;
+        $handle->process(APP.'files');
+        if ($handle->processed) {
+
+
+
+
+          $handle->clean();
+        } else {
+          echo 'error : ' . $handle->error;
+        }
+      }
+
+}
+
 ##DOCUMENTATION
