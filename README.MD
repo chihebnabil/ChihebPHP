@@ -21,7 +21,8 @@ To setup your database go to  /app/database.php and change the (username,passwor
 
 
 ####MAIL
-> Example of creating an e-mail using Nette\Mail\Message class:
+Example of creating an e-mail using Nette\Mail\Message class:
+
 ```php
  use Nette\Mail\Message;
 
