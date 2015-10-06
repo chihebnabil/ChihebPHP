@@ -22,9 +22,7 @@ class Users extends Controller
 
    public function api_upload()
    {
-     # code...
-     $http = new Http();
-     $http->cors();
+     echo Http::cors();
 
 
 
@@ -71,8 +69,7 @@ class Users extends Controller
    }
    public function api_register()
    {
-     $http = new Http();
-     $http->cors();
+    echo Http::cors();
      # code...
      $Auth = new Auth();
      $capsule = new Capsule;
@@ -97,9 +94,9 @@ class Users extends Controller
    }
    public function api_login()
    {
-   $http = new Http();
+   echo Http::cors();
    $capsule = new Capsule;
-   $http->cors();
+  
 
    $Auth = new Auth();
   // $Auth->login('rppt','tooy');
