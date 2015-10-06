@@ -4,15 +4,19 @@
 class Html
 {
 
-
-  public function Css($link)
+  public function __construct()
   {
 
   }
+  public static function css($link)
+  {
+  return '<link rel="stylesheet" charset="utf-8" href="' . $link . '" >';
+  }
 
-  public function Script()
+  public static function script($src)
   {
     # code...
+    return '<script src="' . $src . '" ></script>';
   }
   public static function Image($src, $attributes = '') {
 		if (isset($attributes) && !empty($attributes)) {
