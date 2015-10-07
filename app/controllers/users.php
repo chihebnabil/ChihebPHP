@@ -2,7 +2,6 @@
  *
  */
 use Nette\Mail\Message;
-use Illuminate\Database\Capsule\Manager as Capsule;
 use Cake\ORM\TableRegistry;
 
 
