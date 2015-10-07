@@ -8,7 +8,8 @@ This php MVC Framework uses as a dependency  the package :  illuminate/database 
     "illuminate/database": "^5.1"
 }
 
-##INSTALATION
+###INSTALATION
+
 
 ####DOWNLOAD
 
@@ -81,3 +82,8 @@ Example of UPLOADING  a file
 }
 ```
 ##DOCUMENTATION
+
+
+### License
+
+This framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
