@@ -32,6 +32,10 @@ Example of script & css tags
 
     echo Html::css($link);
 
+    echo Html::image($src, $attributes = '');
+
+    echo Html::email($email, $label = null, $attributes = null);
+
 
 ```
 
