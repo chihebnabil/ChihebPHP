@@ -1,6 +1,7 @@
 {
   "name" : "cnweb/chihebphp",
   "description": "php MVC Framework uses as a dependency  the package :  illuminate/database to manage database",
+  "license": "MIT",
   "authors": [
         {
             "name": "Chiheb Nabil",
