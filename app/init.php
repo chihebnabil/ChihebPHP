@@ -3,9 +3,13 @@ define('ROOT',dirname(__DIR__));
 
 
 define('APP',ROOT."/app/");
+define('WEBROOT',"http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/");
 
 
-define('CSS',ROOT."/public/css/");
+define('CSS',WEBROOT."css/");
+define('IMG',WEBROOT."img/");
+define('JS',WEBROOT."js/");
+define('DS',ROOT."/");
 
 
 require_once ROOT.'/vendor/autoload.php';

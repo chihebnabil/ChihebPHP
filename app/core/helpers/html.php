@@ -10,13 +10,13 @@ class Html
   }
   public static function css($link)
   {
-  return '<link rel="stylesheet" charset="utf-8" href="' . $link . '" >';
+  return '<link rel="stylesheet" charset="utf-8" href="' .CSS.$link . '" >';
   }
 
   public static function script($src)
   {
     # code...
-    return '<script src="' . $src . '" ></script>';
+    return '<script src="' .JS.$src . '" ></script>';
   }
   public static function Image($src, $attributes = '') {
 		if (isset($attributes) && !empty($attributes)) {
