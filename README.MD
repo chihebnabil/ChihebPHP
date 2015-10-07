@@ -35,10 +35,26 @@ ConnectionManager::config('default', [
 
 ```
 ####Controllers
+Example of users controller [user's Auth] :
+
 ```php
 
+use Cake\ORM\TableRegistry;
 
 
+
+
+class Users extends Controller
+{
+public function login()
+   {
+     $Auth = new Auth();
+     $Auth->login('username','password');
+     $this->view('users/login');  // load view file in app/views/login.php
+
+   }
+
+}
 
 
 ```
