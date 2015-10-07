@@ -12,6 +12,8 @@ This php MVC Framework uses as a dependency  cakephp ORM to manage database .
 
 Download the github repo  Unzip it then make a composer install to install dependencies
 
+Change the rewritebase in  public/.htaccess
+
 ####DATABASE
 
 To setup your database go to  /app/database.php and change the (username,password,database)
