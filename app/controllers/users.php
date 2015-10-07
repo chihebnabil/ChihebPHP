@@ -3,6 +3,7 @@
  */
 use Nette\Mail\Message;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Cake\ORM\TableRegistry;
 
 
 
@@ -96,7 +97,7 @@ class Users extends Controller
    {
    echo Http::cors();
    $capsule = new Capsule;
-  
+
 
    $Auth = new Auth();
   // $Auth->login('rppt','tooy');

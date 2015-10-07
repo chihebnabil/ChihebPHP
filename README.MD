@@ -2,13 +2,8 @@
 
 [![Join the chat at https://gitter.im/chihebnabil/Chiheb-PHP](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/chihebnabil/Chiheb-PHP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This php MVC Framework uses as a dependency  the package :  illuminate/database to manage database
+This php MVC Framework uses as a dependency  cakephp ORM to manage database .
 
-
-"require": {
-   "php": ">=5.4.0",
-    "illuminate/database": "^5.1"
-}
 
 ###INSTALATION
 
@@ -19,7 +14,24 @@ Download the github repo  Unzip it then make a composer install to install depen
 
 ####DATABASE
 
-To setup your database go to  /app/database.php and change the (username,password,atabase)
+To setup your database go to  /app/database.php and change the (username,password,database)
+
+```php
+
+use Cake\Datasource\ConnectionManager;
+use Cake\ORM\TableRegistry;
+ConnectionManager::config('default', [
+    'className' => 'Cake\Database\Connection',
+    'driver' => 'Cake\Database\Driver\Mysql',
+    'database' => DATABASE,
+    'username' => DB_USERNAME,
+    'password' => DB_PASSWORD,
+    'host'     => HOSTNAME
+]);
+
+
+
+```
 
 
 ####HTML HELPERS
