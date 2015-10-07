@@ -1,5 +1,7 @@
 #PHP MVC FRAMEWORK
 
+[![Join the chat at https://gitter.im/chihebnabil/Chiheb-PHP](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/chihebnabil/Chiheb-PHP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This php MVC Framework uses as a dependency  the package :  illuminate/database to manage database
 
 
