@@ -18,17 +18,17 @@ class Html
     # code...
     return '<script src="' .JS.$src . '" ></script>';
   }
-  public static function Image($src, $attributes = '') {
+  public static function image($src, $attributes = '') {
 		if (isset($attributes) && !empty($attributes)) {
 			$attributes = self::parse_attr($attributes);
 		}
 		$border = (isset($attributes['border']) && !empty($attributes['border'])) ? $attributes['border'] . ' ' : 'border="0" ';
 		$alt = (isset($attributes['alt']) && !empty($attributes['alt'])) ? $attributes['alt'] . ' ' : 'alt="" ';
-		return '<img src="' . $src . '"' . $attributes . ' ' . $border . $alt . '/>';
+		return '<img src="' .IMG.$src . '"' . $attributes . ' ' . $border . $alt . '/>';
 	}
 
 
-  public static function Email($email, $label = null, $attributes = null)	{
+  public static function email($email, $label = null, $attributes = null)	{
 		$label = (!empty($label)) ? $label : $email;
 		if (isset($attributes) && !empty($attributes)) {
 			$attributes = self::parse_attr($attributes);
