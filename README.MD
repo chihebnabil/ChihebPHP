@@ -2,7 +2,7 @@
 
 [![Join the chat at https://gitter.im/chihebnabil/Chiheb-PHP](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/chihebnabil/Chiheb-PHP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This php MVC Framework uses as a dependency  cakephp ORM to manage database .
+This php MVC Framework uses as a dependency  Cakephp ORM to manage database .
 
 
 ###INSTALATION
@@ -50,11 +50,42 @@ public function login()
    {
      $Auth = new Auth();
      $Auth->login('username','password');
-     $this->view('users/login');  // load view file in app/views/login.php
+     $this->view('users/login');  // load view file in app/views/users/login.php
 
    }
 
 }
+
+
+```
+####Views
+
+Views are in app/views/YOURCONTROLLER/ folder
+
+you can call the views function ex:
+
+```php
+
+ $this->view('users/login');  // load view file in
+ app/views/users/login.php
+
+
+
+```
+#####Layouts
+
+Layouts are in app/views/layouts/ folder
+
+by default the layout is default.php
+
+if you want to change the default layout in the view function :
+
+
+```php
+
+$this->view('users/login',$data,'mylayout.php');
+
+ // load view file with layout file mylayout.php
 
 
 ```
@@ -72,6 +103,16 @@ Example of script & css tags
     echo Html::image($src, $attributes = '');
 
     echo Html::email($email, $label = null, $attributes = null);
+
+
+```
+
+####HTTP HELPERS
+Example of enabling cors function  :
+
+```php
+
+Http::cors();
 
 
 ```
