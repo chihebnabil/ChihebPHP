@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Chiheb-php by chihebnabil</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Chiheb-php</h1>
+          <h2>PHP MVC FRAMEWORK USING cakephp ORM to manage DATABASE</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/chihebnabil/Chiheb-PHP/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/chihebnabil/Chiheb-PHP/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/chihebnabil/Chiheb-PHP" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="php-mvc-framework" class="anchor" href="#php-mvc-framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>PHP MVC FRAMEWORK</h1>
+
+<p><a href="https://gitter.im/chihebnabil/Chiheb-PHP?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/chihebnabil/Chiheb-PHP"></a></p>
+
+<p>This php MVC Framework uses as a dependency  Cakephp ORM to manage database .</p>
+
+<h3>
+<a id="instalation" class="anchor" href="#instalation" aria-hidden="true"><span class="octicon octicon-link"></span></a>INSTALATION</h3>
+
+<h4>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>DOWNLOAD</h4>
+
+<p>Download the github repo  Unzip it then make a composer install to install dependencies</p>
+
+<p>Change the rewritebase in  public/.htaccess</p>
+
+<h4>
+<a id="database" class="anchor" href="#database" aria-hidden="true"><span class="octicon octicon-link"></span></a>DATABASE</h4>
+
+<p>To setup your database go to  /app/database.php and change the (username,password,database)</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Cake\Datasource\ConnectionManager</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Cake\ORM\TableRegistry</span>;</span>
+<span class="pl-s1"><span class="pl-c1">ConnectionManager</span><span class="pl-k">::</span>config(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>, [</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>className<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Cake\Database\Connection<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>driver<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Cake\Database\Driver\Mysql<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>database<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">DATABASE</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">DB_USERNAME</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">DB_PASSWORD</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span>     <span class="pl-k">=&gt;</span> <span class="pl-c1">HOSTNAME</span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span></pre></div>
+
+<h4>
+<a id="controllers" class="anchor" href="#controllers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Controllers</h4>
+
+<p>Example of users controller [user's Auth] :</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Cake\ORM\TableRegistry</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">Users</span> <span class="pl-k">extends</span> <span class="pl-e">Controller</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">login</span>()</span>
+<span class="pl-s1">   {</span>
+<span class="pl-s1">     <span class="pl-smi">$Auth</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Auth</span>();</span>
+<span class="pl-s1">     <span class="pl-smi">$Auth</span><span class="pl-k">-&gt;</span>login(<span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">     <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>view(<span class="pl-s"><span class="pl-pds">'</span>users/login<span class="pl-pds">'</span></span>);  <span class="pl-c">// load view file in app/views/users/login.php</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">   }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span></pre></div>
+
+<h4>
+<a id="views" class="anchor" href="#views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Views</h4>
+
+<p>Views are in app/views/YOURCONTROLLER/ folder</p>
+
+<p>you can call the views function ex:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>view(<span class="pl-s"><span class="pl-pds">'</span>users/login<span class="pl-pds">'</span></span>);  <span class="pl-c">// load view file in</span></span>
+<span class="pl-s1"> <span class="pl-c1">app</span><span class="pl-k">/</span><span class="pl-c1">views</span><span class="pl-k">/</span><span class="pl-c1">users</span><span class="pl-k">/</span><span class="pl-c1">login</span><span class="pl-k">.</span><span class="pl-c1">php</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span></pre></div>
+
+<h5>
+<a id="layouts" class="anchor" href="#layouts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layouts</h5>
+
+<p>Layouts are in app/views/layouts/ folder</p>
+
+<p>by default the layout is default.php</p>
+
+<p>if you want to change the default layout in the view function :</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>view(<span class="pl-s"><span class="pl-pds">'</span>users/login<span class="pl-pds">'</span></span>,<span class="pl-smi">$data</span>,<span class="pl-s"><span class="pl-pds">'</span>mylayout.php<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"> <span class="pl-c">// load view file with layout file mylayout.php</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span></pre></div>
+
+<h4>
+<a id="html-helpers" class="anchor" href="#html-helpers" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML HELPERS</h4>
+
+<p>Example of script &amp; css tags</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-c1">Html</span><span class="pl-k">::</span>script(<span class="pl-smi">$src</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-c1">Html</span><span class="pl-k">::</span>css(<span class="pl-smi">$link</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-c1">Html</span><span class="pl-k">::</span>image(<span class="pl-smi">$src</span>, <span class="pl-smi">$attributes</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-c1">Html</span><span class="pl-k">::</span>email(<span class="pl-smi">$email</span>, <span class="pl-smi">$label</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>, <span class="pl-smi">$attributes</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span></pre></div>
+
+<h4>
+<a id="http-helpers" class="anchor" href="#http-helpers" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTTP HELPERS</h4>
+
+<p>Example of enabling cors function  :</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">Http</span><span class="pl-k">::</span>cors();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span></pre></div>
+
+<h4>
+<a id="mail" class="anchor" href="#mail" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAIL</h4>
+
+<p>Example of creating an e-mail using Nette\Mail\Message class:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"> <span class="pl-k">use</span> <span class="pl-c1">Nette\Mail\Message</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-smi">$mail</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Message</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-smi">$mail</span><span class="pl-k">-&gt;</span>setFrom(<span class="pl-s"><span class="pl-pds">'</span>John &lt;john@example.com&gt;<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">    <span class="pl-k">-&gt;</span>addTo(<span class="pl-s"><span class="pl-pds">'</span>peter@example.com<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">    <span class="pl-k">-&gt;</span>addTo(<span class="pl-s"><span class="pl-pds">'</span>jack@example.com<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">    <span class="pl-k">-&gt;</span>setSubject(<span class="pl-s"><span class="pl-pds">'</span>Order Confirmation<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">    <span class="pl-k">-&gt;</span>setBody(<span class="pl-s"><span class="pl-pds">"</span>Hello, Your order has been accepted.<span class="pl-pds">"</span></span>);</span></pre></div>
+
+<h4>
+<a id="upload" class="anchor" href="#upload" aria-hidden="true"><span class="octicon octicon-link"></span></a>UPLOAD</h4>
+
+<p>Example of UPLOADING  a file</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-k">if</span> (<span class="pl-k">!</span><span class="pl-c1">empty</span>(<span class="pl-smi">$_FILES</span>[<span class="pl-s"><span class="pl-pds">'</span>file<span class="pl-pds">'</span></span>])) {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">      <span class="pl-smi">$handle</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">upload</span>(<span class="pl-smi">$_FILES</span>[<span class="pl-s"><span class="pl-pds">'</span>file<span class="pl-pds">'</span></span>]);</span>
+<span class="pl-s1">      <span class="pl-k">if</span> (<span class="pl-smi">$handle</span><span class="pl-k">-&gt;</span><span class="pl-smi">uploaded</span>) {</span>
+<span class="pl-s1">        <span class="pl-smi">$file_name</span> <span class="pl-k">=</span> <span class="pl-c1">md5</span>(<span class="pl-c1">rand</span>(<span class="pl-c1">1000</span>, <span class="pl-c1">9999999</span>)) ;</span>
+<span class="pl-s1">       <span class="pl-smi">$ext</span> <span class="pl-k">=</span>   <span class="pl-c1">explode</span>(<span class="pl-s"><span class="pl-pds">"</span>.<span class="pl-pds">"</span></span>, <span class="pl-c1">strtolower</span>(<span class="pl-smi">$_FILES</span>[<span class="pl-s"><span class="pl-pds">'</span>file<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>]));</span>
+<span class="pl-s1">        <span class="pl-smi">$handle</span><span class="pl-k">-&gt;</span><span class="pl-smi">file_new_name_body</span>   <span class="pl-k">=</span> <span class="pl-smi">$file_name</span> ;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-smi">$handle</span><span class="pl-k">-&gt;</span><span class="pl-smi">image_ratio_y</span>        <span class="pl-k">=</span> <span class="pl-c1">true</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$handle</span><span class="pl-k">-&gt;</span>process(<span class="pl-c1">APP</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span>files<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$handle</span><span class="pl-k">-&gt;</span><span class="pl-smi">processed</span>) {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">          <span class="pl-smi">$handle</span><span class="pl-k">-&gt;</span>clean();</span>
+<span class="pl-s1">        } <span class="pl-k">else</span> {</span>
+<span class="pl-s1">          <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">'</span>error : <span class="pl-pds">'</span></span> <span class="pl-k">.</span> <span class="pl-smi">$handle</span><span class="pl-k">-&gt;</span><span class="pl-smi">error</span>;</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1">      }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">}</span></pre></div>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>DOCUMENTATION</h2>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+
+<p>This framework is open-sourced software licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>.</p>
+        </section>
+
+        <footer>
+          Chiheb-php is maintained by <a href="https://github.com/chihebnabil">chihebnabil</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
