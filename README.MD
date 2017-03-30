@@ -36,7 +36,8 @@ ConnectionManager::config('default', [
 
 
 ```
-####Controllers
+Controllers
+==
 Example of users controller [user's Auth] :
 
 ```php
