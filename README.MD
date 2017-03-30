@@ -6,8 +6,8 @@ PHP MVC FRAMEWORK
 This php MVC Framework uses as a dependency  Cakephp ORM to manage database .
 
 
-###INSTALATION
-
+INSTALATION
+====
 
 DOWNLOAD
 ==
@@ -170,8 +170,8 @@ Example of UPLOADING  a file
 
 }
 ```
-##DOCUMENTATION
-
+DOCUMENTATION
+==
 
 ### License
 
