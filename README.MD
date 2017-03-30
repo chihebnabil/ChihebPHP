@@ -1,4 +1,5 @@
-#PHP MVC FRAMEWORK
+PHP MVC FRAMEWORK
+===
 
 [![Join the chat at https://gitter.im/chihebnabil/Chiheb-PHP](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/chihebnabil/Chiheb-PHP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -8,13 +9,14 @@ This php MVC Framework uses as a dependency  Cakephp ORM to manage database .
 ###INSTALATION
 
 
-####DOWNLOAD
-
+DOWNLOAD
+==
 Download the github repo  Unzip it then make a composer install to install dependencies
 
 Change the rewritebase in  public/.htaccess
 
-####DATABASE
+DATABASE
+==
 
 To setup your database go to  /app/database.php and change the (username,password,database)
 
@@ -58,8 +60,8 @@ public function login()
 
 
 ```
-####Views
-
+Views
+==
 Views are in app/views/YOURCONTROLLER/ folder
 
 you can call the views function ex:
@@ -72,8 +74,8 @@ you can call the views function ex:
 
 
 ```
-#####Layouts
-
+Layouts
+==
 Layouts are in app/views/layouts/ folder
 
 by default the layout is default.php
@@ -90,7 +92,8 @@ $this->view('users/login',$data,'mylayout.php');
 
 ```
 
-####HTML HELPERS
+HTML HELPERS
+==
 Example of script & css tags
 
 ```php
@@ -107,7 +110,8 @@ Example of script & css tags
 
 ```
 
-####HTTP HELPERS
+HTTP HELPERS
+==
 Example of enabling cors function  :
 
 ```php
