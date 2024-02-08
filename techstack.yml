@@ -1,0 +1,158 @@
+repo_name: chihebnabil/ChihebPHP
+report_id: 335578a977e22bc0f1205c7cf2a9531f
+version: 0.1
+repo_type: Public
+timestamp: '2024-02-08T19:19:22+00:00'
+requested_by: chihebnabil
+provider: github
+branch: master
+detected_tools_count: 12
+tools:
+- name: CSS 3
+  description: The latest evolution of the Cascading Style Sheets language
+  website_url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/6727/css.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP
+  detection_source: Repo Metadata
+- name: Hack
+  description: A programming language for HHVM that interoperates seamlessly with
+    PHP
+  website_url: http://hacklang.org/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1208/download.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP
+  detection_source: Repo Metadata
+- name: PHP
+  description: A popular general-purpose scripting language that is especially suited
+    to web development
+  website_url: http://www.php.net/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/991/hwUcGZ41_400x400.jpg
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP
+  detection_source: Repo Metadata
+- name: CakePHP
+  description: The Rapid Development Framework for PHP
+  website_url: https://cakephp.org/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1196/default_6de4f48b9e8db9eef67580fad2e58fd642b82327.jpg
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: cnabil
+  last_updated_on: 2015-09-26 19:16:34.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP
+  detection_source: Repo Metadata
+- name: PHPUnit
+  description: Testing framework for PHP
+  website_url: https://phpunit.de/
+  version: '4.0'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/1616/1_WsEnddd5Y4EgEHsT054kUQ.jpeg
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: cnabil
+  last_updated_on: 2015-09-26 19:16:34.000000000 Z
+- name: PhpSpec
+  description: A  toolset for behavior driven development
+  website_url: http://www.phpspec.net/en/latest/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/3502/6b9dfb07681dee602dbdf75d9393f07c_400x400.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: cnabil
+  last_updated_on: 2015-09-26 19:16:34.000000000 Z
+- name: Travis CI
+  description: A hosted continuous integration service for open source and private
+    projects
+  website_url: http://travis-ci.com/
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP/blob/master/.travis.yml
+  detection_source: ".travis.yml"
+  last_updated_by: cnabil
+  last_updated_on: 2015-09-27 17:26:57.000000000 Z
+- name: cakephp/orm
+  description: CakePHP ORM - Provides a flexible and powerful ORM implementing a data-mapper
+    pattern
+  package_url: https://packagist.org/cakephp/orm
+  version: '3.1'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: cnabil
+  last_updated_on: 2015-10-07 17:56:07.000000000 Z
+- name: nette/mail
+  description: "\U0001F4E7 Nette Mail: handy email creation and transfer library for
+    PHP with both text and MIME-compliant support"
+  package_url: https://packagist.org/nette/mail
+  version: '2.3'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: cnabil
+  last_updated_on: 2015-10-07 17:56:07.000000000 Z
+- name: phpspec/phpspec
+  description: Specification-oriented BDD framework for PHP 7.1+
+  package_url: https://packagist.org/phpspec/phpspec
+  version: '2.1'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: cnabil
+  last_updated_on: 2015-10-06 16:37:47.000000000 Z
+- name: phpunit/phpunit
+  description: The PHP Unit Testing framework
+  package_url: https://packagist.org/phpunit/phpunit
+  version: '4.0'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/chihebnabil/ChihebPHP/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: cnabil
+  last_updated_on: 2015-10-06 16:37:47.000000000 Z
