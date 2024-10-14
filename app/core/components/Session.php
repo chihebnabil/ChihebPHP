@@ -1,102 +1,97 @@
 <?php
 
-
-class Session
+class Session implements SessionHandlerInterface
 {
-  private $alive = true;
-  private $dbc = NULL;
+    private bool $alive = true;
+    private ?mysqli $dbc = null;
 
-  function __construct()
-  {
-    session_set_save_handler(
-      array(&$this, 'open'),
-      array(&$this, 'close'),
-      array(&$this, 'read'),
-      array(&$this, 'write'),
-      array(&$this, 'destroy'),
-      array(&$this, 'clean'));
-
-    session_start();
-  }
-
-  function __destruct()
-  {
-    if($this->alive)
+    public function __construct()
     {
-      session_write_close();
-      $this->alive = false;
-    }
-  }
-
-  function delete()
-  {
-    if(ini_get('session.use_cookies'))
-    {
-      $params = session_get_cookie_params();
-      setcookie(session_name(), '', time() - 42000,
-        $params['path'], $params['domain'],
-        $params['secure'], $params['httponly']
-      );
+        if (session_status() == PHP_SESSION_NONE) {
+            session_set_save_handler($this, true);
+            session_start();
+        }
     }
 
-    session_destroy();
-
-    $this->alive = false;
-  }
-
-  private function open()
-  {
-    $this->dbc = new MYSQLi(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME)
-      OR die('Could not connect to database.');
-
-    return true;
-  }
-
-  private function close()
-  {
-    return $this->dbc->close();
-  }
-
-  private function read($sid)
-  {
-    $q = "SELECT `data` FROM `sessions` WHERE `id` = '".$this->dbc->real_escape_string($sid)."' LIMIT 1";
-    $r = $this->dbc->query($q);
-
-    if($r->num_rows == 1)
+    public function __destruct()
     {
-      $fields = $r->fetch_assoc();
-
-      return $fields['data'];
+        if ($this->alive) {
+            session_write_close();
+            $this->alive = false;
+        }
     }
-    else
+
+    public function delete(): void
     {
-      return '';
+        if (ini_get('session.use_cookies')) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params['path'], $params['domain'],
+                $params['secure'], $params['httponly']
+            );
+        }
+
+        session_destroy();
+        $this->alive = false;
     }
-  }
 
-  private function write($sid, $data)
-  {
-    $q = "REPLACE INTO `sessions` (`id`, `data`) VALUES ('".$this->dbc->real_escape_string($sid)."', '".$this->dbc->real_escape_string($data)."')";
-    $this->dbc->query($q);
+    public function open($savePath, $sessionName): bool
+    {
+        $this->dbc = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+        
+        if ($this->dbc->connect_error) {
+            throw new Exception('Could not connect to database: ' . $this->dbc->connect_error);
+        }
 
-    return $this->dbc->affected_rows;
-  }
+        return true;
+    }
 
-  private function destroy($sid)
-  {
-    $q = "DELETE FROM `sessions` WHERE `id` = '".$this->dbc->real_escape_string($sid)."'";
-    $this->dbc->query($q);
+    public function close(): bool
+    {
+        return $this->dbc->close();
+    }
 
-    $_SESSION = array();
+    public function read($id): string|false
+    {
+        $stmt = $this->dbc->prepare("SELECT `data` FROM `sessions` WHERE `id` = ? LIMIT 1");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    return $this->dbc->affected_rows;
-  }
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['data'];
+        }
 
-  private function clean($expire)
-  {
-    $q = "DELETE FROM `sessions` WHERE DATE_ADD(`last_accessed`, INTERVAL ".(int) $expire." SECOND) < NOW()";
-    $this->dbc->query($q);
+        return '';
+    }
 
-    return $this->dbc->affected_rows;
-  }
-} ?>
+    public function write($id, $data): bool
+    {
+        $stmt = $this->dbc->prepare("REPLACE INTO `sessions` (`id`, `data`, `last_accessed`) VALUES (?, ?, NOW())");
+        $stmt->bind_param("ss", $id, $data);
+        $stmt->execute();
+
+        return $stmt->affected_rows > 0;
+    }
+
+    public function destroy($id): bool
+    {
+        $stmt = $this->dbc->prepare("DELETE FROM `sessions` WHERE `id` = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+
+        $_SESSION = array();
+
+        return $stmt->affected_rows > 0;
+    }
+
+    public function gc($maxlifetime): int|false
+    {
+        $stmt = $this->dbc->prepare("DELETE FROM `sessions` WHERE `last_accessed` < DATE_SUB(NOW(), INTERVAL ? SECOND)");
+        $stmt->bind_param("i", $maxlifetime);
+        $stmt->execute();
+
+        return $stmt->affected_rows;
+    }
+}
