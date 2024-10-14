@@ -1,248 +1,92 @@
 <?php
 
- class Auth {
+class Auth {
+    private string $userTable = 'users';
+    private string $userColumn = 'email';
+    private string $passColumn = 'password';
+    private string $userLevel = 'userlevel';
+    private bool $encrypt = true;
 
+    private PDO $pdo;
 
-
-     //table fields
-     var $user_table = 'users';          //Users table name
-     var $user_column = 'email';     //USERNAME column (value MUST be valid email)
-     var $pass_column = 'password';      //PASSWORD column
-     var $user_level = 'userlevel';      //(optional) userlevel column
-
-     //encryption
-     var $encrypt = true;       //set to true to use md5 encryption for the password
-
-     //connect to database
-     function dbconnect(){
-
-        $PDO =  new PDO('mysql:='.HOSTNAME.';dbname='.DATABASE, DB_USERNAME, DB_PASSWORD);
-         return;
-     }
-
-     //login function
-     function login($username, $password){
-         //conect to DB
-         $this->dbconnect();
-
-         //check if encryption is used
-         if($this->encrypt == true){
-             $password = md5($password);
-         }
-         //execute login via qry function that prevents MySQL injections
-         $result = $this->qry("SELECT * FROM ".$this->user_table." WHERE ".$this->user_column."='?' AND ".$this->pass_column." = '?';" , $username, $password);
-         $row=$result;
-
-         if($row != "Error" && !empty($row)){
-             if($row[0][$this->user_column] !=""){
-                 //register sessions
-                 //you can add additional sessions here if needed
-                 $_SESSION['loggedin'] = $row[0][$this->pass_column];
-                 //userlevel session is optional. Use it if you have different user levels
-                // $_SESSION['userlevel'] = $row[0][$this->user_level];
-                 return true;
-             }else{
-                 session_destroy();
-                 return false;
-             }
-         }else{
-             return false;
-         }
-
-     }
-
-     //prevent injection
-     function qry($query) {
-       $this->dbconnect();
-       $args  = func_get_args();
-       $query = array_shift($args);
-       $query = str_replace("?", "%s", $query);
-       $args  = array_map('stripslashes', $args);
-       array_unshift($args,$query);
-       $query = call_user_func_array('sprintf',$args);
-       $PDO =  new PDO('mysql:='.HOSTNAME.';dbname='.DATABASE, DB_USERNAME, DB_PASSWORD);
-       $stmt = $PDO->query($query);
-       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-           if($result){
-             return $result;
-           }else{
-              $error = "Error";
-              return $result;
-           }
-     }
-
-     //logout function
-     function logout(){
-         session_destroy();
-         return;
-     }
-
-     //check if loggedin
-     function logincheck($logincode, $user_table, $pass_column, $user_column){
-         //conect to DB
-         $this->dbconnect();
-         //make sure password column and table are set
-         if($this->pass_column == ""){
-             $this->pass_column = $pass_column;
-         }
-         if($this->user_column == ""){
-             $this->user_column = $user_column;
-         }
-         if($this->user_table == ""){
-             $this->user_table = $user_table;
-         }
-         //exectue query
-         $result = $this->qry("SELECT * FROM ".$this->user_table." WHERE ".$this->pass_column." = '?';" , $logincode);
-         $rownum = mysql_num_rows($result);
-         //return true if logged in and false if not
-         if($row != "Error"){
-             if($rownum > 0){
-                 return true;
-             }else{
-                 return false;
-             }
-         }
-     }
-
-     //reset password
-     function passwordreset($username, $user_table, $pass_column, $user_column){
-         //conect to DB
-         $this->dbconnect();
-         //generate new password
-         $newpassword = $this->createPassword();
-
-         //make sure password column and table are set
-         if($this->pass_column == ""){
-             $this->pass_column = $pass_column;
-         }
-         if($this->user_column == ""){
-             $this->user_column = $user_column;
-         }
-         if($this->user_table == ""){
-             $this->user_table = $user_table;
-         }
-         //check if encryption is used
-         if($this->encrypt == true){
-             $newpassword_db = md5($newpassword);
-         }else{
-             $newpassword_db = $newpassword;
-         }
-
-         //update database with new password
-         $qry = "UPDATE ".$this->user_table." SET ".$this->pass_column."='".$newpassword_db."' WHERE ".$this->user_column."='".stripslashes($username)."'";
-         $result = mysql_query($qry) or die(mysql_error());
-
-         $to = stripslashes($username);
-         //some injection protection
-         $illegals=array("%0A","%0D","%0a","%0d","bcc:","Content-Type","BCC:","Bcc:","Cc:","CC:","TO:","To:","cc:","to:");
-         $to = str_replace($illegals, "", $to);
-         $getemail = explode("@",$to);
-
-         //send only if there is one email
-         if(sizeof($getemail) > 2){
-             return false;
-         }else{
-             //send email
-             $from = $_SERVER['SERVER_NAME'];
-             $subject = "Password Reset: ".$_SERVER['SERVER_NAME'];
-             $msg = "
-
- Your new password is: ".$newpassword."
-
- ";
-
-             //now we need to set mail headers
-             $headers = "MIME-Version: 1.0 rn" ;
-             $headers .= "Content-Type: text/html; \r\n" ;
-             $headers .= "From: $from  \r\n" ;
-
-             //now we are ready to send mail
-             $sent = mail($to, $subject, $msg, $headers);
-             if($sent){
-                 return true;
-             }else{
-                 return false;
-             }
-         }
-     }
-
-     //create random password with 8 alphanumerical characters
-     function createPassword() {
-         $chars = "abcdefghijkmnopqrstuvwxyz023456789";
-         srand((double)microtime()*1000000);
-         $i = 0;
-         $pass = '' ;
-         while ($i <= 7) {
-             $num = rand() % 33;
-             $tmp = substr($chars, $num, 1);
-             $pass = $pass . $tmp;
-             $i++;
-         }
-         return $pass;
-     }
-
-     //login form
-     function loginform($formname, $formclass = '', $formaction = "POST"){
-         //conect to DB
-         $this->dbconnect();
-         echo'
- <form name="'.$formname.'" method="post" id="'.$formname.'" class="'.$formclass.'" enctype="application/x-www-form-urlencoded" action="'.$formaction.'">
- <div><label for="username">Username</label>
- <input name="username" id="username" type="text"></div>
- <div><label for="password">Password</label>
- <input name="password" id="password" type="password"></div>
- <input name="action" id="action" value="login" type="hidden">
- <div>
- <input name="submit" id="submit" value="Login" type="submit"></div>
- </form>
-
- ';
-     }
-     //reset password form
-     function resetform($formname, $formclass, $formaction){
-         //conect to DB
-         $this->dbconnect();
-         echo'
- <form name="'.$formname.'" method="post" id="'.$formname.'" class="'.$formclass.'" enctype="application/x-www-form-urlencoded" action="'.$formaction.'">
- <div><label for="username">Username</label>
- <input name="username" id="username" type="text"></div>
- <input name="action" id="action" value="resetlogin" type="hidden">
- <div>
- <input name="submit" id="submit" value="Reset Password" type="submit"></div>
- </form>
-
- ';
-     }
-     //function to install logon table
-     function cratetable($tablename){
-         //conect to DB
-         $this->dbconnect();
-         $qry = "CREATE TABLE IF NOT EXISTS ".$tablename." (
-               id int(11) NOT NULL auto_increment,
-               email varchar(50) NOT NULL default '',
-               password varchar(50) NOT NULL default '',
-               userlevel int(11) NOT NULL default '0',
-               PRIMARY KEY  (id)
-             )";
-         $result = mysql_query($qry) or die(mysql_error());
-         return;
-     }
-
-     function hash($pwd)
-    {
-      # code...
-      $pwd = md5($pwd);
-
-
-      return $pwd;
-
+    public function __construct() {
+        $this->dbConnect();
     }
 
- }
+    private function dbConnect(): void {
+        try {
+            $this->pdo = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, DB_USERNAME, DB_PASSWORD);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            throw new Exception("Database connection failed: " . $e->getMessage());
+        }
+    }
 
+    public function login(string $username, string $password): bool {
+        $password = $this->encrypt ? $this->hash($password) : $password;
 
+        $stmt = $this->pdo->prepare("SELECT * FROM {$this->userTable} WHERE {$this->userColumn} = ? AND {$this->passColumn} = ?");
+        $stmt->execute([$username, $password]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        if ($user) {
+            $_SESSION['loggedin'] = $user[$this->passColumn];
+            // $_SESSION['userlevel'] = $user[$this->userLevel];
+            return true;
+        }
 
- ?>
+        return false;
+    }
+
+    public function logout(): void {
+        session_destroy();
+    }
+
+    public function loginCheck(string $loginCode): bool {
+        $stmt = $this->pdo->prepare("SELECT * FROM {$this->userTable} WHERE {$this->passColumn} = ?");
+        $stmt->execute([$loginCode]);
+        return $stmt->rowCount() > 0;
+    }
+
+    public function passwordReset(string $username): bool {
+        $newPassword = $this->createPassword();
+        $hashedPassword = $this->encrypt ? $this->hash($newPassword) : $newPassword;
+
+        $stmt = $this->pdo->prepare("UPDATE {$this->userTable} SET {$this->passColumn} = ? WHERE {$this->userColumn} = ?");
+        $result = $stmt->execute([$hashedPassword, $username]);
+
+        if ($result) {
+            return $this->sendPasswordResetEmail($username, $newPassword);
+        }
+
+        return false;
+    }
+
+    private function sendPasswordResetEmail(string $to, string $newPassword): bool {
+        $subject = "Password Reset: " . $_SERVER['SERVER_NAME'];
+        $message = "Your new password is: " . $newPassword;
+        $headers = "From: " . $_SERVER['SERVER_NAME'] . "\r\n" .
+                   "Content-Type: text/plain; charset=utf-8\r\n";
+
+        return mail($to, $subject, $message, $headers);
+    }
+
+    public function createPassword(int $length = 8): string {
+        return bin2hex(random_bytes($length));
+    }
+
+    public function createTable(string $tableName): void {
+        $sql = "CREATE TABLE IF NOT EXISTS $tableName (
+            id INT(11) NOT NULL AUTO_INCREMENT,
+            email VARCHAR(50) NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            userlevel INT(11) NOT NULL DEFAULT '0',
+            PRIMARY KEY (id)
+        )";
+        $this->pdo->exec($sql);
+    }
+
+    public function hash(string $password): string {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+}
