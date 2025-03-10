@@ -48,7 +48,7 @@ composer analyze # Static analysis
 
 ## Documentation
 
-For detailed documentation, please visit [documentation link].
+For detailed documentation, please refer to the [documentation.md](documentation.md) file in this repository.
 
 ## License
 
