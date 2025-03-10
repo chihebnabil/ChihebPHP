@@ -1,12 +1,17 @@
 {
     "name": "chiheb/simplex-framework",
-    "description": "A lightweight, modern PHP MVC framework with elegant database handling",
+    "description": "A modern PHP 8.1+ MVC framework featuring elegant database ORM, middleware support, and robust routing system",
     "type": "project",
     "keywords": [
         "framework",
         "mvc",
         "php8",
-        "simplex"
+        "simplex",
+        "orm",
+        "routing",
+        "middleware",
+        "psr-4",
+        "modern-php"
     ],
     "license": "MIT",
     "authors": [

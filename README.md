@@ -1,176 +1,65 @@
-PHP MVC FRAMEWORK
-===
+# Simplex Framework
 
-This php MVC Framework uses as a dependency  Cakephp ORM to manage database .
+A modern PHP 8.1+ MVC framework featuring elegant database ORM, middleware support, and robust routing system.
 
+## Requirements
 
-INSTALATION
-====
+- PHP 8.1 or higher
+- Composer
 
-DOWNLOAD
-==
-Download the github repo  Unzip it then make a composer install to install dependencies
+## Installation
 
-Change the rewritebase in  public/.htaccess
-
-DATABASE
-==
-
-To setup your database go to  /app/database.php and change the (username,password,database)
-
-```php
-
-use Cake\Datasource\ConnectionManager;
-use Cake\ORM\TableRegistry;
-ConnectionManager::config('default', [
-    'className' => 'Cake\Database\Connection',
-    'driver' => 'Cake\Database\Driver\Mysql',
-    'database' => DATABASE,
-    'username' => DB_USERNAME,
-    'password' => DB_PASSWORD,
-    'host'     => HOSTNAME
-]);
-
-
-
-```
-Controllers
-==
-Example of users controller [user's Auth] :
-
-```php
-
-use Cake\ORM\TableRegistry;
-
-
-
-
-class Users extends Controller
-{
-public function login()
-   {
-     $Auth = new Auth();
-     $Auth->login('username','password');
-     $this->view('users/login');  // load view file in app/views/users/login.php
-
-   }
-
-}
-
-
-```
-Views
-==
-Views are in app/views/YOURCONTROLLER/ folder
-
-you can call the views function ex:
-
-```php
-
- $this->view('users/login');  // load view file in
- app/views/users/login.php
-
-
-
-```
-Layouts
-==
-Layouts are in app/views/layouts/ folder
-
-by default the layout is default.php
-
-if you want to change the default layout in the view function :
-
-
-```php
-
-$this->view('users/login',$data,'mylayout.php');
-
- // load view file with layout file mylayout.php
-
-
+```bash
+composer create-project chiheb/simplex-framework your-project-name
 ```
 
-HTML HELPERS
-==
-Example of script & css tags
+## Key Features
 
-```php
+- Modern PHP 8.1+ Framework
+- CakePHP ORM Integration
+- Environment Configuration with Symfony Dotenv
+- Logging with Monolog
+- PSR-4 Autoloading
+- Development Tools:
+  - PHPUnit for testing
+  - PHPStan for static analysis
+  - PHP_CodeSniffer for coding standards
+  - PHP-CS-Fixer for code formatting
 
+## Quick Start
 
-    echo Html::script($src);
-
-    echo Html::css($link);
-
-    echo Html::image($src, $attributes = '');
-
-    echo Html::email($email, $label = null, $attributes = null);
-
-
+1. Configure your environment:
+```bash
+cp .env.example .env
 ```
 
-HTTP HELPERS
-==
-Example of enabling cors function  :
-
-```php
-
-Http::cors();
-
-
+2. Install dependencies:
+```bash
+composer install
 ```
 
-####MAIL
-Example of creating an e-mail using Nette\Mail\Message class:
-
-```php
- use Nette\Mail\Message;
-
-    $mail = new Message;
-
-    $mail->setFrom('John <john@example.com>')
-    ->addTo('peter@example.com')
-    ->addTo('jack@example.com')
-    ->setSubject('Order Confirmation')
-    ->setBody("Hello, Your order has been accepted.");
+3. Run development tools:
+```bash
+composer check    # Runs all code quality tools
+composer format  # Fix code style
+composer lint    # Check coding standards
+composer analyze # Static analysis
 ```
 
+## Documentation
 
+For detailed documentation, please visit [documentation link].
 
+## License
 
-####UPLOAD
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-Example of UPLOADING  a file
+## Contributing
 
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-```php
-    if (!empty($_FILES['file'])) {
+## Author
 
-      $handle = new upload($_FILES['file']);
-      if ($handle->uploaded) {
-        $file_name = md5(rand(1000, 9999999)) ;
-       $ext =   explode(".", strtolower($_FILES['file']['name']));
-        $handle->file_new_name_body   = $file_name ;
-
-
-        $handle->image_ratio_y        = true;
-        $handle->process(APP.'files');
-        if ($handle->processed) {
-
-
-
-
-          $handle->clean();
-        } else {
-          echo 'error : ' . $handle->error;
-        }
-      }
-
-}
-```
-DOCUMENTATION
-==
-
-### License
-
-This framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+- Chiheb Nabil
+- Email: chiheb.design@gmail.com
+- Website: https://mydevmentor.com
