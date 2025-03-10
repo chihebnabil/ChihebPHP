@@ -1,1 +1,6 @@
-vendor
+/vendor
+.env
+.env.*
+!.env.example
+.phpunit.result.cache
+.php-cs-fixer.cache

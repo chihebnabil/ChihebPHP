@@ -1,25 +1,17 @@
 <?php
-define('HOSTNAME','127.0.0.1');
-define('DATABASE','social');
-define('DB_USERNAME','root');
-define('DB_PASSWORD','root');
 
+declare(strict_types=1);
 
 use Cake\Datasource\ConnectionManager;
-use Cake\ORM\TableRegistry;
-ConnectionManager::config('default', [
+
+ConnectionManager::setConfig('default', [
     'className' => 'Cake\Database\Connection',
     'driver' => 'Cake\Database\Driver\Mysql',
-    'database' => DATABASE,
-    'username' => DB_USERNAME,
-    'password' => DB_PASSWORD,
-    'host'     => HOSTNAME
+    'database' => $_ENV['DB_DATABASE'] ?? 'social',
+    'username' => $_ENV['DB_USERNAME'] ?? 'root',
+    'password' => $_ENV['DB_PASSWORD'] ?? 'root',
+    'host' => $_ENV['DB_HOST'] ?? '127.0.0.1',
+    'charset' => 'utf8mb4',
+    'collation' => 'utf8mb4_unicode_ci',
+    'timezone' => 'UTC',
 ]);
-
-
-
-
-
-
-
- ?>

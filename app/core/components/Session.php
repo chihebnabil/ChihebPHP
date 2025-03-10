@@ -3,6 +3,7 @@
 class Session implements SessionHandlerInterface
 {
     private bool $alive = true;
+
     private ?mysqli $dbc = null;
 
     public function __construct()
@@ -25,9 +26,14 @@ class Session implements SessionHandlerInterface
     {
         if (ini_get('session.use_cookies')) {
             $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $params['path'], $params['domain'],
-                $params['secure'], $params['httponly']
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
             );
         }
 
@@ -38,7 +44,7 @@ class Session implements SessionHandlerInterface
     public function open($savePath, $sessionName): bool
     {
         $this->dbc = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-        
+
         if ($this->dbc->connect_error) {
             throw new Exception('Could not connect to database: ' . $this->dbc->connect_error);
         }
@@ -60,6 +66,7 @@ class Session implements SessionHandlerInterface
 
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
+
             return $row['data'];
         }
 
@@ -81,7 +88,7 @@ class Session implements SessionHandlerInterface
         $stmt->bind_param("s", $id);
         $stmt->execute();
 
-        $_SESSION = array();
+        $_SESSION = [];
 
         return $stmt->affected_rows > 0;
     }

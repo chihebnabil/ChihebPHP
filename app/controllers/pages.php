@@ -5,25 +5,18 @@
  */
 class Pages extends Controller
 {
+    public function home($name = '')
+    {
+
+        $this->view('pages/home', $data = ['name' => $name]);
 
 
+    }
 
-  function home($name = '')
-  {
+    public function contact()
+    {
 
-     $this->view('pages/home',$data = ['name'=>$name]);
+        $this->view('pages/contact');
 
-
-  }
-  function contact()
-  {
-
-     $this->view('pages/contact');
-
-  }
-
-
+    }
 }
-
-
- ?>
